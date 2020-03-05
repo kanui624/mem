@@ -26,7 +26,7 @@ class MemsController < ApplicationController
   end 
 
   def memory_params
-    params.require(:memory).permit(:title)
+    params.require(:memory).permit(:title, :mood, :thoughts, :location)
   end
   
 end

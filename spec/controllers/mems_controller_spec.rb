@@ -31,7 +31,7 @@ RSpec.describe MemsController, type: :controller do
       user = FactoryBot.create(:user)
       sign_in user
 
-      post :create, params: { memory: { title: 'test_memory' } }
+      post :create, params: { memory: { title: 'test_memory', mood: 'test_mood', thoughts: 'test_thought', location: 'test_location' } }
       expect(response).to redirect_to mems_path
 
       memory = Memory.last
@@ -44,7 +44,7 @@ RSpec.describe MemsController, type: :controller do
       sign_in user
 
       memory_count = Memory.count
-      post :create, params: { memory: { title: '' } }
+      post :create, params: { memory: { title: '', mood: '', thoughts: '', location: '' } }
       expect(response).to have_http_status(:unprocessable_entity)
       expect(memory_count).to eq Memory.count
     end

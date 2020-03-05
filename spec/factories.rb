@@ -11,6 +11,10 @@ FactoryBot.define do
 
   factory :memory do
     title { "test_title" }
+    mood  { "test_mood" }
+    thoughts { "test_thought" }
+    location { "test_location" }
+
     association :user
   end
 end
