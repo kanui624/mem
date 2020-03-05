@@ -16,6 +16,15 @@ RSpec.describe MemsController, type: :controller do
     end 
   end 
 
-  describe 
+  describe "mems#create action" do
+    it "should successfully create a memory on the database" do
+
+      post :create, params: { memory: { title: 'test_memory' } }
+      expect(response).to redirect_to root_path
+
+      memory = Memory.last
+      expect(memory.title).to eq("test_memory")
+    end 
+  end 
 
 end
