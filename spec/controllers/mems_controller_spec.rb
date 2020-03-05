@@ -16,13 +16,7 @@ RSpec.describe MemsController, type: :controller do
     end 
 
     it "should successfully show the add memory form" do
-      user = User.create(
-        first_name:            'test_first_name',
-        last_name:             'test_last_name',
-        email:                 'test_email@test.com',
-        password:              'test_Password',
-        password_confirmation: 'test_Password'
-      )
+      user = FactoryBot.create(:user)
       sign_in user
 
       get :new
@@ -32,13 +26,7 @@ RSpec.describe MemsController, type: :controller do
 
   describe "mems#create action" do
     it "should successfully create a memory on the database" do
-      user = User.create(
-        first_name:            'test_first_name',
-        last_name:             'test_last_name',
-        email:                 'test_email@test.com',
-        password:              'test_Password',
-        password_confirmation: 'test_Password'
-      )
+      user = FactoryBot.create(:user)
       sign_in user
 
       post :create, params: { memory: { title: 'test_memory' } }
@@ -50,13 +38,7 @@ RSpec.describe MemsController, type: :controller do
     end 
 
     it "should properly deal with validation errors" do 
-      user = User.create(
-        first_name:            'test_first_name',
-        last_name:             'test_last_name',
-        email:                 'test_email@test.com',
-        password:              'test_Password',
-        password_confirmation: 'test_Password'
-      )
+      user = FactoryBot.create(:user)
       sign_in user
 
       memory_count = Memory.count
