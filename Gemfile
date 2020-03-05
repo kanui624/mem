@@ -75,6 +75,8 @@ gem 'mini_racer'
 
 gem 'simple_form'
 
+gem 'devise'
+
 
 
 
