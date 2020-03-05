@@ -9,6 +9,13 @@ class MemsController < ApplicationController
     @memory = Memory.new
   end
 
+  def show 
+    @memory = Memory.find(params[:id])
+    if @memory.blank?
+      render plain: 'Could Not Find Your Mem', status: :not_found
+    end
+  end
+
   def create
     @memory = current_user.memories.create(memory_params)
     if @memory.valid?
