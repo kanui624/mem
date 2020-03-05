@@ -25,6 +25,12 @@ RSpec.describe MemsController, type: :controller do
       memory = Memory.last
       expect(memory.title).to eq("test_memory")
     end 
+
+    it "should properly deal with validation errors" do 
+      post :create, params: { memory: { title: '' } }
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(Memory.count).to eq 0
+    end
   end 
 
 end

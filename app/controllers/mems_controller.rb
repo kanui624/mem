@@ -10,7 +10,11 @@ class MemsController < ApplicationController
 
   def create
     @memory = Memory.create(memory_params)
-    redirect_to root_path
+    if @memory.valid?
+      redirect_to root_path
+    else 
+      render :new, status: :unprocessable_entity 
+    end
   end 
 
   def memory_params
