@@ -78,6 +78,11 @@ gem 'simple_form'
 
 gem 'devise'
 
+gem "geocoder"
+
+gem "figaro"
+
+
 
 
 
