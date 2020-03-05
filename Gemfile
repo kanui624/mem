@@ -71,6 +71,8 @@ end
 
 gem 'jquery-rails'
 
+gem 'mini_racer'
+
 
 
 
