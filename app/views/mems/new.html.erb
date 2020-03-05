@@ -5,7 +5,7 @@
     <div class="booyah-box col-10 offset-1">
       <div align="center">
         <h1>Create a New Mem</h1>
-        <%= simple_form_for @memory, url: new_mem_path do |f| %>
+        <%= simple_form_for @memory, url: mems_path do |f| %>
         <%= f.input :title %>
         <%= f.submit "Create", class: 'btn btn-secondary' %>
         <% end %>

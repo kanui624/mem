@@ -2,7 +2,7 @@ class MemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-
+    @memories= current_user.memories.all
   end 
 
   def new 
@@ -10,7 +10,7 @@ class MemsController < ApplicationController
   end
 
   def show 
-    @memory = Memory.find(params[:id])
+    @memory = Memory.find_by_id(params[:id])
     if @memory.blank?
       render plain: 'Could Not Find Your Mem', status: :not_found
     end
@@ -19,7 +19,7 @@ class MemsController < ApplicationController
   def create
     @memory = current_user.memories.create(memory_params)
     if @memory.valid?
-      redirect_to root_path
+      redirect_to mems_path
     else 
       render :new, status: :unprocessable_entity 
     end

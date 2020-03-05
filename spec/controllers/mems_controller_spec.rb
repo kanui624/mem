@@ -4,6 +4,8 @@ RSpec.describe MemsController, type: :controller do
 
   describe "mems#index action" do
     it "should successfully show the page" do
+      user = FactoryBot.create(:user)
+      sign_in user
       get :index
       expect(response).to have_http_status(:success)
     end
@@ -30,7 +32,7 @@ RSpec.describe MemsController, type: :controller do
       sign_in user
 
       post :create, params: { memory: { title: 'test_memory' } }
-      expect(response).to redirect_to root_path
+      expect(response).to redirect_to mems_path
 
       memory = Memory.last
       expect(memory.title).to eq("test_memory")
@@ -55,9 +57,9 @@ RSpec.describe MemsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
 
-    # it "should return a 404 error if the memory is not found" do
-    #   get :show, params: { id: 'invalid_url' }
-    #   expect(response).to have_http_status(:not_found)
-    # end
+    it "should return a 404 error if the memory is not found" do
+      get :show, params: { id: 'invalid_url' }
+      expect(response).to have_http_status(:not_found)
+    end
   end
 end
