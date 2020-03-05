@@ -1,4 +1,5 @@
 class MemsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
 
   def index
 
@@ -9,7 +10,7 @@ class MemsController < ApplicationController
   end
 
   def create
-    @memory = Memory.create(memory_params)
+    @memory = current_user.memories.create(memory_params)
     if @memory.valid?
       redirect_to root_path
     else 

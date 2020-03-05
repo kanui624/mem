@@ -10,7 +10,21 @@ RSpec.describe MemsController, type: :controller do
   end
 
   describe "mems#new action" do 
+    it "should require users to be signed in" do
+      get :new
+      expect(response).to redirect_to new_user_session_path
+    end 
+
     it "should successfully show the add memory form" do
+      user = User.create(
+        first_name:            'test_first_name',
+        last_name:             'test_last_name',
+        email:                 'test_email@test.com',
+        password:              'test_Password',
+        password_confirmation: 'test_Password'
+      )
+      sign_in user
+
       get :new
       expect(response).to have_http_status(:success)
     end 
@@ -18,18 +32,37 @@ RSpec.describe MemsController, type: :controller do
 
   describe "mems#create action" do
     it "should successfully create a memory on the database" do
+      user = User.create(
+        first_name:            'test_first_name',
+        last_name:             'test_last_name',
+        email:                 'test_email@test.com',
+        password:              'test_Password',
+        password_confirmation: 'test_Password'
+      )
+      sign_in user
 
       post :create, params: { memory: { title: 'test_memory' } }
       expect(response).to redirect_to root_path
 
       memory = Memory.last
       expect(memory.title).to eq("test_memory")
+      expect(memory.user).to eq(user)
     end 
 
     it "should properly deal with validation errors" do 
+      user = User.create(
+        first_name:            'test_first_name',
+        last_name:             'test_last_name',
+        email:                 'test_email@test.com',
+        password:              'test_Password',
+        password_confirmation: 'test_Password'
+      )
+      sign_in user
+
+      memory_count = Memory.count
       post :create, params: { memory: { title: '' } }
       expect(response).to have_http_status(:unprocessable_entity)
-      expect(Memory.count).to eq 0
+      expect(memory_count).to eq Memory.count
     end
   end 
 
