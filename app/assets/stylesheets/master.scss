@@ -17,3 +17,9 @@ body {background-color: blue }
             height: 150px;}
 
 .img-fluid:hover {transform: scale(1.3);}
+
+html, body {height: 100%;
+            margin: 0;
+            padding: 0;}
+
+#map {height: 300px;}

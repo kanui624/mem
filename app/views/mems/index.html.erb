@@ -2,18 +2,12 @@
   <head>
   </head>
   <body>
-    <h1> User Specfic Listed Mems </h1>
-    <br />
-    <% @memories.each do |memory| %>
-      <div>
-        <h2><%= memory.id %></h2>
-        <h2><%= memory.title %></h2>
-        <h2><%= memory.mood %></h2>
-        <h2><%= memory.thoughts %></h2>
-        <h2><%= memory.location %></h2>
-        <br />
-        <br />
-      </div>
-    <% end %>
+    <div align="center">
+      <h1> User Added Mems List </h1>
+      <br />
+      <% @memories.each do |memory| %>
+          <h2><%= link_to memory.title, mem_path(memory) %></h2>
+      <% end %>
+    </div>
   </body>
 </html>

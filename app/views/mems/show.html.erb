@@ -1,1 +1,38 @@
-<%= @memory.inspect %>
+<html>
+  <head>
+    <h1><%= @memory.title %></h1>
+    <h1><%= @memory.mood %></h1>
+    <br />
+    <p><%= @memory.thoughts %></p>
+  </head>
+  <body>
+  <% if @memory.latitude.present? && @memory.longitude.present? %>
+    <script>
+      function initMap() {
+        var myLatLng = {lat: <%= @memory.latitude %>, lng: <%= @memory.longitude %>};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Hello World!'
+        });
+      }
+    </script>
+
+    <div id="map"></div>
+
+  <% end %>
+
+  <br />
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsPDLKLaADtYlNztlJerg-sbGJQ7p2o3M&callback=initMap">
+    </script>
+  </body>
+</html>
+
