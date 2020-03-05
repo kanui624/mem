@@ -73,6 +73,8 @@ gem 'jquery-rails'
 
 gem 'mini_racer'
 
+gem 'simple_form'
+
 
 
 

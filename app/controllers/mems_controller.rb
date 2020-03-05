@@ -5,7 +5,7 @@ class MemsController < ApplicationController
   end 
 
   def new 
-
+    @memory = Memory.new
   end
   
 end
