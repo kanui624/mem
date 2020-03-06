@@ -10,15 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_05_161814) do
+ActiveRecord::Schema.define(version: 2020_03_06_174436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "mem_photos", force: :cascade do |t|
+    t.text "caption"
+    t.integer "user_id"
+    t.integer "memory_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "picture"
+    t.index ["memory_id"], name: "index_mem_photos_on_memory_id"
+    t.index ["user_id", "memory_id"], name: "index_mem_photos_on_user_id_and_memory_id"
+  end
+
   create_table "memories", force: :cascade do |t|
-    t.string "title"
+    t.string "mem_title"
     t.string "mood"
     t.text "thoughts"
+    t.date "date"
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

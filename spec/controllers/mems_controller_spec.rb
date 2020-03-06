@@ -27,15 +27,15 @@ RSpec.describe MemsController, type: :controller do
   end 
 
   describe "mems#create action" do
-    it "should successfully create a memory on the database" do
+    it "should successfully create a memory in the database" do
       user = FactoryBot.create(:user)
       sign_in user
 
-      post :create, params: { memory: { title: 'test_memory', mood: 'test_mood', thoughts: 'test_thought', location: 'test_location' } }
+      post :create, params: { memory: { mem_title: 'test_mem_title', mood: 'test_mood', thoughts: 'test_thought', location: 'test_location' } }
       expect(response).to redirect_to mems_path
 
       memory = Memory.last
-      expect(memory.title).to eq("test_memory")
+      expect(memory.mem_title).to eq("test_mem_title")
       expect(memory.user).to eq(user)
     end 
 
@@ -44,23 +44,24 @@ RSpec.describe MemsController, type: :controller do
       sign_in user
 
       memory_count = Memory.count
-      post :create, params: { memory: { title: '', mood: '', thoughts: '', location: '' } }
+      post :create, params: { memory: { mem_title: '', mood: '', thoughts: '', location: '' } }
       expect(response).to have_http_status(:unprocessable_entity)
       expect(memory_count).to eq Memory.count
     end
   end 
 
-  describe "grams#show action" do
+  describe "mems#show action" do
     it "should successfully show the page if the memory is found" do
       memory = FactoryBot.create(:memory)
-      
+
+
       get :show, params: { id: memory.id }
       expect(response).to have_http_status(:success)
     end
 
-    it "should return a 404 error if the memory is not found" do
+    it "should redirect to mems_path if the memory is not found" do
       get :show, params: { id: 'invalid_url' }
-      expect(response).to have_http_status(:not_found)
+      expect(response).to redirect_to mems_path
     end
   end
 end

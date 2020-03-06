@@ -6,13 +6,49 @@
       <div align="center">
         <h1>Create a New Mem</h1>
         <%= simple_form_for @memory, url: mems_path do |f| %>
-        <%= f.input :title %>
+        <%= f.input :mem_title %>
         <%= f.input :mood %>
         <%= f.input :thoughts %>
+        <%= f.input :date %>
         <%= f.input :location %>
         <%= f.submit "Create", class: 'btn btn-secondary' %>
         <% end %>
+
+        <%= simple_form_for @mem_photo, url: mem_mem_photos_path(@memory) do |f| %>
+        <%= f.input :picture %>
+        <%= f.input :caption %>  
+        <%= f.submit "Add a Photo", class: 'btn btn-secondary' %>
+        <% end %>
       </div>
     </div>
+
+<!--     <div class="modal fade" id="photo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">x</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Add a Photo</h4>
+      </div>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= f.submit "Add a Photo", class: 'btn btn-primary' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="booyah-box col-10 offset-1">
+  <h1>Photos</h1>
+    <div class="col-10 offset-2">
+<!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#photo">Add Photo</button>
+    </div>
   </body>
-</html>
+</html> -->

@@ -2,12 +2,14 @@
   <head>
   </head>
   <body>
-    <div align="center">
-      <h1> User Added Mems List </h1>
-      <br />
-      <% @memories.each do |memory| %>
-          <h2><%= link_to memory.title, mem_path(memory) %></h2>
-      <% end %>
+    <div class="mem-timeline">
+      <div align="center">
+        <% @memories.each do |memory| %>
+            <h2><%= link_to memory.mem_title, mem_path(memory) %></h2>
+             <h3><%= memory.date.strftime("%B %d, %Y") %></h3>
+             <br />
+        <% end %>
+      </div>
     </div>
   </body>
 </html>

@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :mem_photo do
+    
+  end
+
   factory :user do
     sequence :email do |n|
       "test_email#{n}@test.com" 
@@ -10,9 +14,10 @@ FactoryBot.define do
   end
 
   factory :memory do
-    title { "test_title" }
+    mem_title { "test_mem_title" }
     mood  { "test_mood" }
     thoughts { "test_thought" }
+    date     { "test_date" }
     location { "test_location" }
 
     association :user

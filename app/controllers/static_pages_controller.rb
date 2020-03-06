@@ -1,10 +1,3 @@
 class StaticPagesController < ApplicationController
-  def initial
-    
-  end 
-
-  def info_page
-
-  end
+  attr_accessor :initial, :info_page 
 end
-

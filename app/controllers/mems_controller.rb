@@ -3,18 +3,23 @@ class MemsController < ApplicationController
 
   def index
     @memories= current_user.memories.all
+    if current_user.memories.blank? 
+      redirect_to new_mem_path 
+      flash[:alert] = "Create Mem First"
+    end 
   end 
 
   def new 
     @memory = Memory.new
+    @mem_photo = Mem_photo.new
   end
 
   def show 
     @memory = Memory.find_by_id(params[:id])
     if @memory.blank?
-      render plain: 'Not Your Mem', status: :not_found
+      redirect_to mems_path
     elsif @memory.user != current_user
-      return render plain: 'Not Your Mem', status: :forbidden
+      redirect_to mems_path
     end
   end
 
@@ -28,7 +33,7 @@ class MemsController < ApplicationController
   end 
 
   def memory_params
-    params.require(:memory).permit(:title, :mood, :thoughts, :location)
+    params.require(:memory).permit(:mem_title, :mood, :thoughts, :date, :location)
   end
   
 end
