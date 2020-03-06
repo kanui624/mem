@@ -53,6 +53,7 @@ RSpec.describe MemsController, type: :controller do
   describe "grams#show action" do
     it "should successfully show the page if the memory is found" do
       memory = FactoryBot.create(:memory)
+      
       get :show, params: { id: memory.id }
       expect(response).to have_http_status(:success)
     end

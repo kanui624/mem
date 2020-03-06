@@ -12,7 +12,9 @@ class MemsController < ApplicationController
   def show 
     @memory = Memory.find_by_id(params[:id])
     if @memory.blank?
-      render plain: 'Could Not Find Your Mem', status: :not_found
+      render plain: 'Not Your Mem', status: :not_found
+    elsif @memory.user != current_user
+      return render plain: 'Not Your Mem', status: :forbidden
     end
   end
 
