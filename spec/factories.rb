@@ -10,7 +10,7 @@ FactoryBot.define do
   end
 
   factory :memory do
-    mem_title { "test_mem_title" }
+    mem { "test_mem_title" }
     mood  { "test_mood" }
     thoughts { "test_thought" }
     date     { "Mon, 01 Jan" }

@@ -33,6 +33,6 @@ class MemsController < ApplicationController
   private
 
   def memory_params
-    params.require(:memory).permit(:mem_title, :mood, :thoughts, :date, :location)
+    params.require(:memory).permit(:mem, :mood, :thoughts, :date, :location)
   end
 end

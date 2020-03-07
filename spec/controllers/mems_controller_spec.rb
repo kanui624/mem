@@ -6,7 +6,7 @@ RSpec.describe MemsController, type: :controller do
     it "should successfully show the page" do
       user = FactoryBot.create(:user)
       sign_in user
-      user.memories.create(mem_title: "test_mem_title", mood: "test_mood", thoughts: "test_thought", date: "2020-03-06", location: "test_mem_title")
+      user.memories.create(mem: "test_mem", mood: "test_mood", thoughts: "test_thought", date: "2020-03-06", location: "test_mem_title")
       get :index
       expect(response).to have_http_status(:success)
     end
@@ -37,10 +37,10 @@ RSpec.describe MemsController, type: :controller do
     it "should successfully create a memory in the database" do
       user = FactoryBot.create(:user)
       sign_in user
-      post :create, params: { memory: { mem_title: 'test_mem_title', mood: 'test_mood', thoughts: 'test_thought', date: '2020-03-06', location: 'test_mem_title'} }
+      post :create, params: { memory: { mem: 'test_mem', mood: 'test_mood', thoughts: 'test_thought', date: '2020-03-06', location: 'test_mem_title'} }
       expect(response).to redirect_to mems_path
       memory = Memory.last
-      expect(memory.mem_title).to eq("test_mem_title")
+      expect(memory.mem).to eq("test_mem")
       expect(memory.user).to eq(user)
     end 
 
@@ -48,7 +48,7 @@ RSpec.describe MemsController, type: :controller do
       user = FactoryBot.create(:user)
       sign_in user
       memory_count = Memory.count
-      post :create, params: { memory: { mem_title: '', mood: '', thoughts: '', location: '' } }
+      post :create, params: { memory: { mem: '', mood: '', thoughts: '', location: '' } }
       expect(response).to have_http_status(:unprocessable_entity)
       expect(memory_count).to eq Memory.count
     end
@@ -58,7 +58,7 @@ RSpec.describe MemsController, type: :controller do
     it "should successfully show the page if the memory is found" do
       user = FactoryBot.create(:user)
       sign_in user
-      memory = user.memories.create(mem_title: "test_mem_title", mood: "test_mood", thoughts: "test_thought", date: "2020-03-06", location: "test_mem_title")
+      memory = user.memories.create(mem: "test_mem", mood: "test_mood", thoughts: "test_thought", date: "2020-03-06", location: "test_mem_title")
       get :show, params: { id: memory.id }
       expect(response).to have_http_status(:success)
     end

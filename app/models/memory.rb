@@ -4,7 +4,7 @@ class Memory < ApplicationRecord
   geocoded_by :location
   after_validation :geocode
 
-  validates :mem_title, presence: true, length: {maximum: 30, minimun: 3}
+  validates :mem, presence: true, length: {maximum: 30, minimun: 3}
   validates :mood, presence: true, length: {maximum: 30, minimun: 3}
   validates :thoughts, presence: true, length: {maximum: 300, minimun: 3}
   validates :date, presence: true
