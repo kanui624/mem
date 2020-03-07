@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_06_203643) do
+ActiveRecord::Schema.define(version: 2020_03_05_161814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,16 +27,6 @@ ActiveRecord::Schema.define(version: 2020_03_06_203643) do
     t.float "latitude"
     t.float "longitude"
     t.index ["user_id"], name: "index_memories_on_user_id"
-  end
-
-  create_table "photos", force: :cascade do |t|
-    t.text "caption"
-    t.integer "user_id"
-    t.integer "memory_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["memory_id"], name: "index_photos_on_memory_id"
-    t.index ["user_id", "memory_id"], name: "index_photos_on_user_id_and_memory_id"
   end
 
   create_table "users", force: :cascade do |t|
