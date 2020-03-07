@@ -84,6 +84,8 @@ gem "figaro"
 
 gem 'carrierwave', '~> 1.0'
 
+gem 'jquery-ui-rails'
+
 
 
 

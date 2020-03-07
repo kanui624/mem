@@ -1,17 +1,20 @@
 <html>
   <head>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div class="booyah-box col-10 offset-1">
-      <div align="center">
-        <h1>Create a New Mem</h1>
-        <%= simple_form_for @memory, url: mems_path do |f| %>
-        <%= f.input :mem %>
-        <%= f.input :mood %>
-        <%= f.input :thoughts %>
-        <%= f.input :date %>
-        <%= f.input :location %>
-        <%= f.submit "Create", class: 'btn btn-secondary' %>
-        <% end %>
+    <div class="form_margin">
+      <div class="booyah-box col-10 offset-1">
+        <div align="center">
+          <%= simple_form_for @memory, url: mems_path do |f| %>
+          <%= f.input :mem %>
+          <%= f.input :mood %>
+          <%= f.input :thoughts %>
+          <%= f.input :date %>
+          <%= f.input :location %>
+          <%= f.submit "$", class: 'btn btn-secondary' %>
+          <% end %>
+        </div>
       </div>
     </div>
+

@@ -1,12 +1,15 @@
 <html>
   <head>
   </head>
+  <script>
+    $(function() {
+      $('.bookdrag').sortable({});
+    });
+  </script>
   <body>
-    <div class="mini-header"> 
-      <div align="center">
-        <h1> mem </h1>
-        <h2> a digital journal </h2>
-      </div>
-    </div>
+    <ul class="bookdrag">
+      <a href= about ><%= image_tag 'about.png', class: 'about' %></a>
+      <%= image_tag 'book_two.png', class: 'book' %>
+    </ul>
   </body>
 </html>

@@ -16,4 +16,10 @@ RSpec.describe StaticPagesController, type: :controller do
     end 
   end 
 
+  describe "static_pages#about action" do 
+    it "should show the secret about page" do 
+      get :about
+      expect(response).to have_http_status(:success)
+    end
+  end
 end

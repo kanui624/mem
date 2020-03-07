@@ -1,12 +1,13 @@
 <html>
   <head>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="mem-timeline">
       <div align="center">
         <% @memories.each do |memory| %>
-            <h2><%= link_to memory.mem, mem_path(memory) %></h2>
-             <h3><%= memory.date %></h3>
+            <h2><%= link_to memory.mem, mem_path(memory), {:style=>'color:#FFFFFF;', :class => "css_class"}  %></h2>
+             <h3><%= memory.date.strftime("%B %d, %Y") %></h3>
              <br />
         <% end %>
       </div>
