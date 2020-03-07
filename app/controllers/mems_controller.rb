@@ -1,8 +1,8 @@
 class MemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!
 
   def index
-    @memories= current_user.memories.all
+    @memories = current_user.memories.all
     if current_user.memories.blank? 
       redirect_to new_mem_path 
       flash[:alert] = "Create Mem First"
@@ -11,14 +11,12 @@ class MemsController < ApplicationController
 
   def new 
     @memory = Memory.new
-    @mem_photo = Mem_photo.new
+    # @photo = Photo.new
   end
 
   def show 
-    @memory = Memory.find_by_id(params[:id])
+    @memory = current_user.memories.find_by_id(params[:id])
     if @memory.blank?
-      redirect_to mems_path
-    elsif @memory.user != current_user
       redirect_to mems_path
     end
   end
@@ -32,8 +30,9 @@ class MemsController < ApplicationController
     end
   end 
 
+  private
+
   def memory_params
     params.require(:memory).permit(:mem_title, :mood, :thoughts, :date, :location)
   end
-  
 end

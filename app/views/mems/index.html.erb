@@ -6,7 +6,7 @@
       <div align="center">
         <% @memories.each do |memory| %>
             <h2><%= link_to memory.mem_title, mem_path(memory) %></h2>
-             <h3><%= memory.date.strftime("%B %d, %Y") %></h3>
+             <h3><%= memory.date %></h3>
              <br />
         <% end %>
       </div>

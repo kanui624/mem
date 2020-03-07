@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :mem_photo do
+  factory :photo do
     
   end
 
@@ -17,7 +17,7 @@ FactoryBot.define do
     mem_title { "test_mem_title" }
     mood  { "test_mood" }
     thoughts { "test_thought" }
-    date     { "test_date" }
+    date     { "Mon, 01 Jan" }
     location { "test_location" }
 
     association :user
