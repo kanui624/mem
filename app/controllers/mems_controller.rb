@@ -1,7 +1,7 @@
 class MemsController < ApplicationController
   before_action :authenticate_user!
 
-  def index
+  def index 
     @memories = current_user.memories.all
     if current_user.memories.blank? 
       redirect_to new_mem_path 
@@ -11,7 +11,6 @@ class MemsController < ApplicationController
 
   def new 
     @memory = Memory.new
-    # @photo = Photo.new
   end
 
   def show 
@@ -35,21 +34,21 @@ class MemsController < ApplicationController
     if @memory.blank?
       redirect_to mems_path
       flash[:alert] = "Mem Not Found"
-    end
+    end 
   end 
 
   def update 
     @memory = current_user.memories.find_by_id(params[:id])
     if @memory.blank?
-      redirect_to edit_mem_path 
+      return redirect_to mems_path(current_user) 
       flash[:alert] = "Mem Not Found"
     end 
     @memory.update_attributes(memory_params)
-    # if @memory.valid?
-      redirect_to edit_mem_path 
-    # else 
-    #   render :edit, status: :unprocessable_entity 
-    # end 
+    if @memory.valid?
+      redirect_to mems_path(current_user)
+    else 
+      render :edit, status: :unprocessable_entity 
+    end 
   end 
 
   private

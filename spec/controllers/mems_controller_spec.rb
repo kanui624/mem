@@ -94,7 +94,7 @@ RSpec.describe MemsController, type: :controller do
       sign_in user
       memory = user.memories.create(mem: "test_mem", mood: "test_mood", thoughts: "test_thought", date: "2020-03-06", location: "test_mem_location")
       patch :update, params: { id: memory.id, memory: { mem: 'changed_mem', mood: 'changed_mood', thoughts: 'changed_thought', date: '2020-03-07', location: 'changed_mem_location' } }
-      expect(response).to redirect_to mems_path
+      expect(response).to redirect_to mems_path(user)
       memory.reload
       expect(memory.mem).to eq "changed_mem"
       expect(memory.mood).to eq "changed_mood"  
@@ -107,11 +107,21 @@ RSpec.describe MemsController, type: :controller do
       user = FactoryBot.create(:user)
       sign_in user
       patch :update, params: { id: 'test_url', memory: { mem: 'changed_mem', mood: 'changed_mood', thoughts: 'changed_thought', date: '2020-03-07', location: 'changed_mem_location' } }
-      expect(response).to redirect_to edit_mem_path
+      expect(response).to redirect_to mems_path(user)
     end
 
-  #   it "should render the edit form with an http status of unprocessable_entity" do
-
-  #   end
+    it "should render the edit form with an http status of unprocessable_entity" do
+      user = FactoryBot.create(:user)
+      sign_in user
+      memory = user.memories.create(mem: "test_mem", mood: "test_mood", thoughts: "test_thought", date: "2020-03-06", location: "test_mem_location")
+      patch :update, params: { id: memory.id, memory: { mem: '' } }
+      expect(response).to have_http_status(:unprocessable_entity)
+      memory.reload
+      expect(memory.mem).to eq "test_mem"
+      expect(memory.mood).to eq "test_mood"
+      expect(memory.thoughts).to eq "test_thought"
+      expect(memory.date.to_s).to eq "2020-03-06"
+      expect(memory.location).to eq "test_mem_location"
+    end
   end
 end
