@@ -6,6 +6,7 @@
     <div class="mem-timeline">
       <div align="center">
         <% @memories.reverse_each do |memory| %>
+            <h1> | </h1>
             <h2><%= link_to memory.mem, mem_path(memory), {:style=>'color:#FFFFFF;', :class => "css_class"}  %></h2>
              <h3><%= memory.date.strftime("%B %d, %Y") %></h3>
              <br />

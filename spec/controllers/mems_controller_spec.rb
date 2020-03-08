@@ -107,7 +107,7 @@ RSpec.describe MemsController, type: :controller do
       user = FactoryBot.create(:user)
       sign_in user
       patch :update, params: { id: 'test_url', memory: { mem: 'changed_mem', mood: 'changed_mood', thoughts: 'changed_thought', date: '2020-03-07', location: 'changed_mem_location' } }
-      expect(response).to redirect_to mems_path
+      expect(response).to redirect_to edit_mem_path
     end
 
   #   it "should render the edit form with an http status of unprocessable_entity" do
