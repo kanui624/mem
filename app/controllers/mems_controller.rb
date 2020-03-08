@@ -5,7 +5,7 @@ class MemsController < ApplicationController
     @memories = current_user.memories.all
     if current_user.memories.blank? 
       redirect_to new_mem_path 
-      flash[:alert] = "Create Mem First"
+      flash[:alert] = "create a mem first"
     end 
   end 
 

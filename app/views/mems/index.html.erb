@@ -6,11 +6,17 @@
     <div class="mem-timeline">
       <div align="center">
         <% @memories.reverse_each do |memory| %>
+          <div class="mem_hover_line">
             <h1> | </h1>
+          </div>
             <br />
+          <div class="mem_hover">
             <h2><%= link_to memory.mem, mem_path(memory), {:style=>'color:#FFFFFF;', :class => "css_class"}  %></h2>
-             <h3><%= memory.date.strftime("%B %d, %Y") %></h3>
-             <br />
+          </div>
+          <div class="mem_hover">
+            <h3><%= memory.date.strftime("%B %d, %Y")%></h3>
+            <br />  
+          </div>
         <% end %>
       </div>
     </div>
