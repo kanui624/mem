@@ -114,7 +114,7 @@ RSpec.describe MemsController, type: :controller do
       user = FactoryBot.create(:user)
       sign_in user
       memory = user.memories.create(mem: "test_mem", mood: "test_mood", thoughts: "test_thought", date: "2020-03-06", location: "test_mem_location")
-      patch :update, params: { id: memory.id, memory: { mem: '' } }
+      patch :update, params: { id: memory.id, memory: { mem: '', mood: '', thoughts: '', date: '', location: '' } }
       expect(response).to have_http_status(:unprocessable_entity)
       memory.reload
       expect(memory.mem).to eq "test_mem"
@@ -122,6 +122,25 @@ RSpec.describe MemsController, type: :controller do
       expect(memory.thoughts).to eq "test_thought"
       expect(memory.date.to_s).to eq "2020-03-06"
       expect(memory.location).to eq "test_mem_location"
+    end
+  end
+
+  describe "mems#destroy action" do
+    it "should allow a user to destroy mems" do
+      user = FactoryBot.create(:user)
+      sign_in user
+      memory = user.memories.create(mem: "test_mem", mood: "test_mood", thoughts: "test_thought", date: "2020-03-06", location: "test_mem_location")
+      delete :destroy, params: { id: memory.id }
+      expect(response).to redirect_to mems_path(user)
+      memory = Memory.find_by_id(memory.id)
+      expect(memory).to eq nil
+    end
+
+    it "should redirect to timeline (mem-index) page if the mem is not found" do
+      user = FactoryBot.create(:user)
+      sign_in user
+      delete :destroy, params: { id: 'test_url' }
+      expect(response).to redirect_to mems_path(user)
     end
   end
 end

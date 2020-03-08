@@ -51,6 +51,16 @@ class MemsController < ApplicationController
     end 
   end 
 
+  def destroy
+    @memory = current_user.memories.find_by_id(params[:id])
+    if @memory.blank?
+    return redirect_to mems_path(current_user) 
+      flash[:alert] = "Mem Not Found"
+    end 
+    @memory.destroy
+    redirect_to mems_path(current_user)
+  end
+
   private
 
   def memory_params
