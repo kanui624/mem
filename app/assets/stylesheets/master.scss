@@ -21,6 +21,16 @@ html, body {height: 100%;
             border-radius: 10px;
             height: 120px;}
 
+ .bookdrag {transition: transform .35s;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 10px;
+            height: 120px;}
+
 .book:hover {transform: scale(1.3);}
 
 
@@ -55,13 +65,17 @@ html, body {height: 100%;
 .mem-timeline {font-family: 'Playfair Display', serif;
               color: #fff2e6;}
 
-.about {position: absolute;
+.about {transition: transform .35s;
+        position: absolute;
         margin: auto;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         height: 25px;}
+
+.about:hover {transform: scale(1.3);}
+
 
 .form_margin {margin-top: 50px;
               font-family: 'Playfair Display', serif;
@@ -75,13 +89,6 @@ html, body {height: 100%;
 .no-blue {font-family: 'Playfair Display', serif;
           color: #fff2e6;
           text-transform: lowercase;}
-
-.about_url {margin-top: 100px;
-        font-family: 'Playfair Display', serif;
-        color: #fff2e6;
-        text-transform: lowercase;
-        font-size: 12px;
-        }
 
 .about-mem {position: absolute;
             margin: auto;

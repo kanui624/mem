@@ -3,12 +3,12 @@
   </head>
   <script>
     $(function() {
-      $('.bookdrag').sortable({});
+      $('.bookdrag').draggable({});
     });
   </script>
   <body>
+    <a href= about ><%= image_tag 'about.png', class: 'about' %></a>
     <ul class="bookdrag">
-      <a href= about ><%= image_tag 'about.png', class: 'about' %></a>
       <%= image_tag 'book_two.png', class: 'book' %>
     </ul>
   </body>
