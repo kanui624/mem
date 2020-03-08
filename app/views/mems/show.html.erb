@@ -44,6 +44,7 @@
         <div class="mem-edit">
           <% if current_user && current_user == @memory.user %>
             <%= link_to 'edit mem', edit_mem_path(@memory), class: 'btn btn-secondary' %>
+            <%= link_to 'delete mem', mem_path(@memory), class: 'btn btn-secondary', method: :delete, data: {confirm: 'you sure you wanna delete this mem?'} %>
           <% end %>
         </div>
       </div>

@@ -45,7 +45,7 @@ class MemsController < ApplicationController
     end 
     @memory.update_attributes(memory_params)
     if @memory.valid?
-      redirect_to mems_path(current_user)
+      redirect_to mem_path(@memory)
     else 
       render :edit, status: :unprocessable_entity 
     end 

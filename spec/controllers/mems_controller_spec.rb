@@ -94,7 +94,7 @@ RSpec.describe MemsController, type: :controller do
       sign_in user
       memory = user.memories.create(mem: "test_mem", mood: "test_mood", thoughts: "test_thought", date: "2020-03-06", location: "test_mem_location")
       patch :update, params: { id: memory.id, memory: { mem: 'changed_mem', mood: 'changed_mood', thoughts: 'changed_thought', date: '2020-03-07', location: 'changed_mem_location' } }
-      expect(response).to redirect_to mems_path(user)
+      expect(response).to redirect_to mem_path(memory)
       memory.reload
       expect(memory.mem).to eq "changed_mem"
       expect(memory.mood).to eq "changed_mood"  
