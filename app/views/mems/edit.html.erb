@@ -6,13 +6,14 @@
     <div class="form_margin">
       <div class="booyah-box col-10 offset-1">
         <div align="center">
-          <%= simple_form_for @memory, url: mems_path do |f| %>
+          <%= simple_form_for @memory, url: mem_path do |f| %>
           <%= f.input :mem %>
           <%= f.input :mood %>
           <%= f.input :thoughts %>
           <%= f.input :date %>
           <%= f.input :location %>
-          <%= f.submit "create", class: 'btn btn-secondary' %>
+          <h3>suggestion: other than maybe fixing spelling mistakes, try to keep your mems the way they were. keep it real. that's what's cool about it.</h3> 
+          <%= f.submit "edit mem", class: 'btn btn-secondary' %>
           <% end %>
         </div>
       </div>
