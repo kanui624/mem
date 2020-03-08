@@ -30,6 +30,28 @@ class MemsController < ApplicationController
     end
   end 
 
+  def edit 
+    @memory = current_user.memories.find_by_id(params[:id])
+    if @memory.blank?
+      redirect_to mems_path
+      flash[:alert] = "Mem Not Found"
+    end
+  end 
+
+  def update 
+    @memory = current_user.memories.find_by_id(params[:id])
+    if @memory.blank?
+      redirect_to mems_path
+      flash[:alert] = "Mem Not Found"
+    end 
+    @memory.update_attributes(memory_params)
+    if @memory.valid?
+      redirect_to mems_path 
+    else 
+      render :edit, status: :unprocessable_entity 
+    end 
+  end 
+
   private
 
   def memory_params
