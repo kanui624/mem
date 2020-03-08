@@ -1,39 +1,48 @@
 <html>
   <head>
-    <h1><%= @memory.mem %></h1>
-    <h1><%= @memory.mood %></h1>
-    <br />
-    <h1><%= @memory.date.strftime("%B %d, %Y") %></h1>
-    <p><%= @memory.thoughts %></p>
   </head>
-  <body>
-  <% if @memory.latitude.present? && @memory.longitude.present? %>
-    <script>
-      function initMap() {
-        var myLatLng = {lat: <%= @memory.latitude %>, lng: <%= @memory.longitude %>};
+  <div class="form_margin">
+    <div class="booyah-box col-10 offset-1">
+      <div align="center"> 
+        <body>
+          <div style="border:0.1px; border-style:solid; border-color: white; padding: 0.1em;">
+            <h2><%= @memory.mem %></h2>
+            <h3>mood: <%= @memory.mood %></h3>
+            <p><%= @memory.thoughts %></p>
+          </div>
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: myLatLng
-        });
+        <% if @memory.latitude.present? && @memory.longitude.present? %>
+          <script>
+            function initMap() {
+              var myLatLng = {lat: <%= @memory.latitude %>, lng: <%= @memory.longitude %>};
 
-        var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          title: 'Hello World!'
-        });
-      }
-    </script>
+              var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: myLatLng
+              });
 
-    <div id="map"></div>
+              var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Hello World!'
+              });
+            }
+          </script>
 
-  <% end %>
+          <div id="map"></div>
 
-  <br />
+        <% end %>
 
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1SbG-BOWcVj3ZbWVmXVBRd6DgBMJ4-pg&callback=initMap">
-    </script>
-  </body>
+        <br />
+
+          <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1SbG-BOWcVj3ZbWVmXVBRd6DgBMJ4-pg&callback=initMap">
+          </script>
+
+          <h3><%= @memory.date.strftime("%B %d, %Y") %></h3>
+        </body>
+      </div>
+    </div>
+  </div>
 </html>
 
