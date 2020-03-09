@@ -41,6 +41,7 @@
 
           <h3><%= @memory.date.strftime("%B %d, %Y") %></h3>
         </body>
+        <br />
         <div class="mem-edit">
           <% if current_user && current_user == @memory.user %>
             <%= link_to 'edit mem', edit_mem_path(@memory), class: 'btn btn-secondary' %>

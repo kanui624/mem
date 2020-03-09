@@ -96,7 +96,7 @@ html, body {height: 100%;
             left: 0;
             right: 0;
             bottom: 0;
-            height: 60%;}
+            height: 65%;}
 
 .alert_style {font-family: 'Playfair Display', serif;
               color: #fff2e6;
@@ -110,4 +110,7 @@ html, body {height: 100%;
 .mem_hover_line {transition: transform .35s;}
 
 .mem_hover_line:hover {transform: scale(1.5);}
+
+.instruct { height: 200px;}
+
 

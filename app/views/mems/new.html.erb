@@ -6,14 +6,18 @@
     <div class="form_margin">
       <div class="booyah-box col-10 offset-1">
         <div align="center">
-          <%= simple_form_for @memory, url: mems_path do |f| %>
-          <%= f.input :mem %>
-          <%= f.input :mood %>
-          <%= f.input :thoughts %>
-          <%= f.input :date %>
-          <%= f.input :location %>
-          <%= f.submit "create", class: 'btn btn-secondary' %>
+          <% if current_user.memories.blank? %>
+            <%= image_tag 'instruct.png', class: 'instruct' %>
           <% end %>
+          <br />
+              <%= simple_form_for @memory, url: mems_path do |f| %>
+              <%= f.input :mem %>
+              <%= f.input :mood %>
+              <%= f.input :thoughts %>
+              <%= f.input :date %>
+              <%= f.input :location %>
+              <%= f.submit "create", class: 'btn btn-secondary' %>
+              <% end %>
         </div>
       </div>
     </div>
