@@ -8,3 +8,4 @@ Rails.application.routes.draw do
   #   resources :mem_photos, only: :create
   # end 
 end
+ 
