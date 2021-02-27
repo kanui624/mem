@@ -22,4 +22,4 @@ The technologies used to accomplish this were:
 - Ruby on Rails for all other CRUD operations
 - Heroku for hosting
 
-Mem was not designed responsively as that was not a requirement, so it's best fit for a 15" laptop like the one I built it on. With that said, fully understanding the fundamentals of building a backend API, testing it, and getting it to talk to a relational database was what this project was centered around.
+Mem was not designed responsively as that was not a requirement, so it's best fit for a 15" laptop like the one I built it on. With that said, fully understanding the fundamentals of building a backend API, testing it, and getting it to talk to a relational database is what this project was centered around.
